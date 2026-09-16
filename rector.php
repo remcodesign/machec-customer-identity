@@ -8,7 +8,7 @@ use RectorLaravel\Rector\ClassMethod\AddGenericReturnTypeToRelationsRector;
 return RectorConfig::configure()
     ->withPaths([
         __DIR__.'/app',
-        __DIR__.'/resources',
+        __DIR__.'/database',
         __DIR__.'/routes',
         __DIR__.'/tests',
         __DIR__.'/resources/views/livewire',
