@@ -5,9 +5,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Livewire;
 
-beforeEach(function () {});
+beforeEach(function (): void {});
 
-test('security settings page can be rendered', function () {
+test('security settings page can be rendered', function (): void {
     $user = User::factory()->create();
 
     $response = $this->actingAs($user)
@@ -17,7 +17,7 @@ test('security settings page can be rendered', function () {
     $response->assertOk();
 });
 
-test('security settings page requires password confirmation when enabled', function () {
+test('security settings page requires password confirmation when enabled', function (): void {
     $user = User::factory()->create();
 
     $response = $this->actingAs($user)
@@ -26,7 +26,7 @@ test('security settings page requires password confirmation when enabled', funct
     $response->assertRedirect(route('password.confirm'));
 });
 
-test('security settings page renders without two factor when feature is disabled', function () {
+test('security settings page renders without two factor when feature is disabled', function (): void {
     config(['fortify.features' => []]);
 
     $user = User::factory()->create();
@@ -41,7 +41,7 @@ test('security settings page renders without two factor when feature is disabled
         ->assertDontSee('Two-factor authentication');
 });
 
-test('password can be updated', function () {
+test('password can be updated', function (): void {
     $user = User::factory()->create([
         'password' => Hash::make('password'),
     ]);
@@ -59,7 +59,7 @@ test('password can be updated', function () {
     expect(Hash::check('new-password', $user->refresh()->password))->toBeTrue();
 });
 
-test('correct password must be provided to update password', function () {
+test('correct password must be provided to update password', function (): void {
     $user = User::factory()->create([
         'password' => Hash::make('password'),
     ]);
