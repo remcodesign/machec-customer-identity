@@ -6,6 +6,7 @@ use Illuminate\Validation\Rules\Password;
 use Spatie\LaravelData\Attributes\Validation\Email;
 use Spatie\LaravelData\Attributes\Validation\Max;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Support\Validation\ValidationContext;
 
 class RegisterData extends Data
 {
@@ -20,7 +21,7 @@ class RegisterData extends Data
     /**
      * @return array<string, array<int, mixed>>
      */
-    public static function rules(): array
+    public static function rules(?ValidationContext $context = null): array
     {
         return [
             'password' => ['confirmed', Password::default()],

@@ -3,18 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Actions\LoginAction;
-use App\Concerns\BuildsAuthSessionResponse;
 use App\Data\Requests\LoginData;
+use App\Data\Responses\AuthSessionData;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    use BuildsAuthSessionResponse;
-
     public function __invoke(Request $request, LoginData $data, LoginAction $action): JsonResponse
     {
-        return $this->sessionResponse($action->handle($request, $data));
+        return response()->json(AuthSessionData::fromUser($action->handle($request, $data)));
     }
 }
