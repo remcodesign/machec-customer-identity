@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Actions\LoginAction;
 use App\Concerns\BuildsAuthSessionResponse;
+use App\Data\Requests\LoginData;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -12,8 +13,8 @@ class LoginController extends Controller
 {
     use BuildsAuthSessionResponse;
 
-    public function __invoke(Request $request, LoginAction $action): JsonResponse
+    public function __invoke(Request $request, LoginData $data, LoginAction $action): JsonResponse
     {
-        return $this->sessionResponse($action->handle($request));
+        return $this->sessionResponse($action->handle($request, $data));
     }
 }

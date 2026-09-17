@@ -3,6 +3,7 @@
 namespace App\Actions;
 
 use App\Concerns\WritesAuditLog;
+use App\Data\Requests\LoginData;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,14 +15,9 @@ class LoginAction
     /**
      * Authenticate a customer and issue a stateful Sanctum SPA session (D8).
      */
-    public function handle(Request $request): User
+    public function handle(Request $request, LoginData $data): User
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
-        ]);
-
-        if (! Auth::guard('web')->attempt($credentials)) {
+        if (! Auth::guard('web')->attempt(['email' => $data->email, 'password' => $data->password])) {
             abort(422, 'These credentials do not match our records.');
         }
 
