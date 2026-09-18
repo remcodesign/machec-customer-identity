@@ -143,7 +143,14 @@ return [
     */
 
     'features' => [
-        Features::registration(),
+        // Features::registration() is deliberately disabled — this app's own
+        // Livewire UI is the admin back office (D11); admin accounts are
+        // always seeded (DatabaseSeeder), never self-registered. Real
+        // customer signups go through Step 2.4's own API-only pipeline
+        // (POST /api/v1/register -> RegisterAction, which assigns the
+        // customer role and writes a usr_audit_log row, D63/D79) — Fortify's
+        // stock CreateNewUser action bypassed both, producing un-audited,
+        // roleless "ghost" accounts.
         Features::resetPasswords(),
     ],
 

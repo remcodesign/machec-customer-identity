@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4460ae7d3ab4c1c4e3a00b590c4ecaf8",
+    "content-hash": "0acb22cc07bafce3370497fff42205e6",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2636,22 +2636,30 @@
         },
         {
             "name": "machec/contracts",
-            "version": "0.2.0",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/remcodesign/machec-contracts.git",
-                "reference": "1426de441d94943e8f348c70b0ee757bb48c2fe6"
+                "reference": "60dabc3c367d014e76b5d5913ff97e326fa4ebb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/remcodesign/machec-contracts/zipball/1426de441d94943e8f348c70b0ee757bb48c2fe6",
-                "reference": "1426de441d94943e8f348c70b0ee757bb48c2fe6",
+                "url": "https://api.github.com/repos/remcodesign/machec-contracts/zipball/60dabc3c367d014e76b5d5913ff97e326fa4ebb5",
+                "reference": "60dabc3c367d014e76b5d5913ff97e326fa4ebb5",
                 "shasum": ""
             },
             "require": {
+                "illuminate/support": "^11.0|^12.0|^13.0",
                 "php": "^8.3"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Machec\\Contracts\\MachecContractsServiceProvider"
+                    ]
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Machec\\Contracts\\": "src/"
@@ -2662,10 +2670,10 @@
             ],
             "description": "Shared Composer package for cross-app value objects, casts, and services used by the Machec Laravel Cloud apps.",
             "support": {
-                "source": "https://github.com/remcodesign/machec-contracts/tree/0.2.0",
+                "source": "https://github.com/remcodesign/machec-contracts/tree/0.3.0",
                 "issues": "https://github.com/remcodesign/machec-contracts/issues"
             },
-            "time": "2026-09-17T16:30:45+00:00"
+            "time": "2026-09-17T19:26:09+00:00"
         },
         {
             "name": "monolog/monolog",

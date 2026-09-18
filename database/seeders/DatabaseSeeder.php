@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\AuditLog;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Machec\Contracts\Enums\RoleName;
 use Spatie\Permission\Models\Role;
 
@@ -28,9 +30,27 @@ class DatabaseSeeder extends Seeder
         Role::findOrCreate(RoleName::CustomerAdmin);
         Role::findOrCreate(RoleName::DataAdmin);
 
-        User::factory()->create([
+        $customerAdmin = User::factory()->create([
             'name' => 'Customer Admin',
-            'email' => 'customer_admin@example.com',
-        ])->assignRole(RoleName::CustomerAdmin);
+            'email' => 'cust@example.com',
+            'password' => Hash::make(config('services.demo.admin_password')),
+        ]);
+        $customerAdmin->assignRole(RoleName::CustomerAdmin);
+
+        // Demo-only rows so AdminDashboard's "Recent activity" panel isn't
+        // empty on a fresh seed — clearly labelled `[seed demo]` so nobody
+        // mistakes them for real audit trail entries.
+        AuditLog::factory()
+            ->sequence(
+                ['action' => '[seed demo] login'],
+                ['action' => '[seed demo] profile.updated'],
+                ['action' => '[seed demo] address.created'],
+            )
+            ->count(3)
+            ->create([
+                'user_id' => $customerAdmin->id,
+                'subject_type' => User::class,
+                'subject_id' => $customerAdmin->id,
+            ]);
     }
 }

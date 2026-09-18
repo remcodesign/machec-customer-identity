@@ -24,6 +24,24 @@
                 >
                     {{ __('Dashboard') }}
                 </flux:sidebar.item>
+
+                <flux:sidebar.item
+                    icon="users"
+                    :href="route('users.index')"
+                    :current="request()->routeIs('users.*')"
+                    wire:navigate
+                >
+                    {{ __('Users') }}
+                </flux:sidebar.item>
+
+                <br />
+                
+                <x-machec::admin-nav
+                    :links="[
+                        ['label' => __('Commercial Core'), 'url' => rtrim(config('services.commercial_core.url'), '/').'/login'],
+                        ['label' => __('Logistics & WMS'), 'url' => rtrim(config('services.logistics_wms.url'), '/').'/login'],
+                    ]"
+                />
             </flux:sidebar.group>
         </flux:sidebar.nav>
 

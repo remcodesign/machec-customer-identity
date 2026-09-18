@@ -53,6 +53,21 @@ test('registering creates a user with the customer role and issues a session, no
     ]);
 });
 
+test('logging out invalidates the session and writes a usr_audit_log row', function (): void {
+    $user = User::factory()->create();
+    $this->actingAs($user);
+
+    $response = $this->withHeader('Origin', 'https://shop.machec.example')
+        ->postJson('/api/v1/auth/logout');
+
+    $response->assertNoContent();
+    $this->assertGuest();
+    $this->assertDatabaseHas('usr_audit_log', [
+        'user_id' => $user->id,
+        'action' => 'logout',
+    ]);
+});
+
 test('rejects login from an origin outside the configured stateful domains', function (): void {
     $user = User::factory()->create(['password' => 'correct-password']);
 
