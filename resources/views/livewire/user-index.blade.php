@@ -1,5 +1,13 @@
 <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
-    <flux:heading size="lg">{{ __('Users') }}</flux:heading>
+    <div class="flex items-center justify-between">
+        <flux:heading size="lg">{{ __('Users') }}</flux:heading>
+
+        @if ($this->canManage)
+            <flux:button :href="route('users.create')" variant="primary" size="sm" wire:navigate>
+                {{ __('Create user') }}
+            </flux:button>
+        @endif
+    </div>
 
     <flux:table>
         <flux:table.columns>
@@ -22,9 +30,20 @@
                     </flux:table.cell>
                     <flux:table.cell>{{ $user->addresses_count }}</flux:table.cell>
                     <flux:table.cell>
-                        <flux:button :href="route('users.show', $user)" size="sm" wire:navigate>
-                            {{ __('View') }}
-                        </flux:button>
+                        <div class="flex justify-end gap-2">
+                            <flux:button :href="route('users.show', $user)" size="sm" wire:navigate>
+                                {{ __('View') }}
+                            </flux:button>
+
+                            @if ($this->canManage)
+                                <x-machec::confirm-delete-modal
+                                    :name="'delete-user-'.$user->id"
+                                    :heading="__('Delete this user?')"
+                                    :description="__('This permanently deletes :name and cannot be undone.', ['name' => $user->name])"
+                                    :action="'deleteUser('.$user->id.')'"
+                                />
+                            @endif
+                        </div>
                     </flux:table.cell>
                 </flux:table.row>
             @endforeach
