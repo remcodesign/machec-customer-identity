@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\IdentityAuth;
 
 use App\Concerns\WritesAuditLog;
 use App\Data\Requests\LoginData;

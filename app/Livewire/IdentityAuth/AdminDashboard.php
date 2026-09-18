@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\IdentityAuth;
 
 use App\Models\Address;
 use App\Models\AuditLog;

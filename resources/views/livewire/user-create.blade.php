@@ -29,15 +29,20 @@
         <flux:field>
             <x-machec::role-select
                 wire:model="form.role"
-                :roles="\App\Livewire\Forms\UserForm::allowedRoles()"
+                :roles="\App\Livewire\IdentityAuth\Forms\UserForm::allowedRoles()"
                 :label="__('Role')"
             />
             <flux:error name="form.role" />
         </flux:field>
 
         <div class="flex justify-end gap-2">
-            <flux:button :href="route('users.index')" variant="filled" wire:navigate>{{ __('Cancel') }}</flux:button>
-            <flux:button type="submit" variant="primary">{{ __('Create user') }}</flux:button>
+            <flux:button
+                :href="route('users.index')"
+                variant="filled"
+                class="cursor-pointer"
+                wire:navigate
+            >{{ __('Cancel') }}</flux:button>
+            <flux:button type="submit" variant="primary" class="cursor-pointer">{{ __('Create user') }}</flux:button>
         </div>
     </form>
 </div>

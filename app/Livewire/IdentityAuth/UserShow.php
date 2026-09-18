@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\IdentityAuth;
 
-use App\Actions\UpdateUserAction;
-use App\Livewire\Forms\UserForm;
+use App\Actions\IdentityAuth\UpdateUserAction;
+use App\Livewire\IdentityAuth\Forms\UserForm;
 use App\Models\Address;
 use App\Models\User;
 use Illuminate\Contracts\View\View;

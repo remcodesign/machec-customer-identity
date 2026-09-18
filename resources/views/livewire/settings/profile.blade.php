@@ -12,7 +12,7 @@
             </div>
 
             <div class="flex items-center gap-4">
-                <flux:button variant="primary" type="submit">{{ __('Save') }}</flux:button>
+                <flux:button variant="primary" type="submit" class="cursor-pointer">{{ __('Save') }}</flux:button>
             </div>
         </form>
 

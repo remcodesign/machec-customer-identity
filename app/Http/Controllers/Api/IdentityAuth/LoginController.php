@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\IdentityAuth;
 
-use App\Actions\LoginAction;
+use App\Actions\IdentityAuth\LoginAction;
 use App\Data\Requests\LoginData;
 use App\Data\Responses\AuthSessionData;
 use App\Http\Controllers\Controller;

@@ -3,7 +3,7 @@
         <flux:heading size="lg">{{ __('Users') }}</flux:heading>
 
         @if ($this->canManage)
-            <flux:button :href="route('users.create')" variant="primary" size="sm" wire:navigate>
+            <flux:button :href="route('users.create')" variant="primary" size="sm" class="cursor-pointer" wire:navigate>
                 {{ __('Create user') }}
             </flux:button>
         @endif
@@ -31,7 +31,12 @@
                     <flux:table.cell>{{ $user->addresses_count }}</flux:table.cell>
                     <flux:table.cell>
                         <div class="flex justify-end gap-2">
-                            <flux:button :href="route('users.show', $user)" size="sm" wire:navigate>
+                            <flux:button
+                                :href="route('users.show', $user)"
+                                size="sm"
+                                class="cursor-pointer"
+                                wire:navigate
+                            >
                                 {{ __('View') }}
                             </flux:button>
 

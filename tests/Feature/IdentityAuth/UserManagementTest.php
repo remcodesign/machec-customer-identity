@@ -1,8 +1,8 @@
 <?php
 
-use App\Livewire\UserCreate;
-use App\Livewire\UserIndex;
-use App\Livewire\UserShow;
+use App\Livewire\IdentityAuth\UserCreate;
+use App\Livewire\IdentityAuth\UserIndex;
+use App\Livewire\IdentityAuth\UserShow;
 use App\Models\Address;
 use App\Models\AuditLog;
 use App\Models\User;

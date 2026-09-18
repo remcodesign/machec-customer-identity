@@ -14,7 +14,7 @@
     <div class="relative overflow-hidden rounded-xl border border-neutral-200 p-4 dark:border-neutral-700">
         <div class="flex items-center justify-between">
             <flux:heading size="md">{{ __('Addresses') }}</flux:heading>
-            <flux:button size="sm" wire:click="addAddress">{{ __('Add address') }}</flux:button>
+            <flux:button size="sm" class="cursor-pointer" wire:click="addAddress">{{ __('Add address') }}</flux:button>
         </div>
 
         <flux:table class="mt-4">
@@ -35,6 +35,7 @@
                         <flux:table.cell>
                             <flux:button
                                 size="sm"
+                                class="cursor-pointer"
                                 wire:click="editAddress({{ $address->id }})"
                             >{{ __('Edit') }}</flux:button>
                         </flux:table.cell>
@@ -49,7 +50,7 @@
     </div>
 
     <flux:modal wire:model="showAddressForm" class="md:w-96">
-        <livewire:address-form
+        <livewire:identity-auth.address-form
             :user="$user"
             :address="$this->addresses->firstWhere('id', $editingAddressId)"
             :key="'address-form-'.($editingAddressId ?? 'new')"
@@ -76,14 +77,18 @@
                 <flux:field>
                     <x-machec::role-select
                         wire:model="form.role"
-                        :roles="\App\Livewire\Forms\UserForm::allowedRoles()"
+                        :roles="\App\Livewire\IdentityAuth\Forms\UserForm::allowedRoles()"
                         :label="__('Role')"
                     />
                     <flux:error name="form.role" />
                 </flux:field>
 
                 <div class="flex justify-end">
-                    <flux:button type="submit" variant="primary">{{ __('Save changes') }}</flux:button>
+                    <flux:button
+                        type="submit"
+                        variant="primary"
+                        class="cursor-pointer"
+                    >{{ __('Save changes') }}</flux:button>
                 </div>
             </form>
         </div>

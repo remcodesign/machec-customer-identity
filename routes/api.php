@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\Api\CustomerAddressController;
-use App\Http\Controllers\Api\CustomerContactController;
-use App\Http\Controllers\Api\LoginController;
-use App\Http\Controllers\Api\LogoutController;
-use App\Http\Controllers\Api\PasswordResetRequestController;
-use App\Http\Controllers\Api\RegisterController;
-use App\Http\Controllers\Api\WhoamiController;
+use App\Http\Controllers\Api\IdentityAuth\CustomerAddressController;
+use App\Http\Controllers\Api\IdentityAuth\CustomerContactController;
+use App\Http\Controllers\Api\IdentityAuth\LoginController;
+use App\Http\Controllers\Api\IdentityAuth\LogoutController;
+use App\Http\Controllers\Api\IdentityAuth\PasswordResetRequestController;
+use App\Http\Controllers\Api\IdentityAuth\RegisterController;
+use App\Http\Controllers\Api\IdentityAuth\WhoamiController;
+use App\Http\Middleware\RecordServiceTokenUsageMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1/auth')->group(function (): void {
@@ -17,7 +18,7 @@ Route::prefix('v1/auth')->group(function (): void {
 
 Route::post('v1/password/reset-request', PasswordResetRequestController::class)->middleware('throttle:login');
 
-Route::prefix('internal/v1')->middleware('auth:sanctum')->group(function (): void {
+Route::prefix('internal/v1')->middleware(['auth:sanctum', RecordServiceTokenUsageMiddleware::class])->group(function (): void {
     Route::get('whoami', WhoamiController::class);
     Route::get('customers/{customer}/addresses/{address}', CustomerAddressController::class)
         ->whereNumber(['customer', 'address'])

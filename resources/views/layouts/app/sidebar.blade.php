@@ -34,6 +34,17 @@
                     {{ __('Users') }}
                 </flux:sidebar.item>
 
+                @if (auth()->user()->hasRole(\Machec\Contracts\Enums\RoleName::CustomerAdmin))
+                    <flux:sidebar.item
+                        icon="key"
+                        :href="route('service-clients.index')"
+                        :current="request()->routeIs('service-clients.*')"
+                        wire:navigate
+                    >
+                        {{ __('Service clients') }}
+                    </flux:sidebar.item>
+                @endif
+
                 <br />
 
                 <x-machec::admin-nav

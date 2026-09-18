@@ -45,6 +45,6 @@
             <flux:label>{{ __('Default shipping address') }}</flux:label>
         </flux:field>
 
-        <flux:button type="submit" variant="primary">{{ __('Save') }}</flux:button>
+        <flux:button type="submit" variant="primary" class="cursor-pointer">{{ __('Save') }}</flux:button>
     </form>
 </div>

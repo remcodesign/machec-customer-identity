@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\IdentityAuth;
 
 use App\Data\Responses\WhoamiData;
 use App\Http\Controllers\Controller;

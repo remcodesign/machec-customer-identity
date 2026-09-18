@@ -1,7 +1,7 @@
 <?php
 
-use App\Livewire\AdminDashboard;
-use App\Livewire\UserShow;
+use App\Livewire\IdentityAuth\AdminDashboard;
+use App\Livewire\IdentityAuth\UserShow;
 use App\Models\Address;
 use App\Models\AuditLog;
 use App\Models\User;

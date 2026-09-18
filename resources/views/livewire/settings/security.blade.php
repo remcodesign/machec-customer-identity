@@ -39,6 +39,7 @@
                 <flux:button
                     variant="primary"
                     type="submit"
+                    class="cursor-pointer"
                     data-test="update-password-button"
                 >{{ __('Save') }}</flux:button>
             </div>

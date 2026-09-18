@@ -1,9 +1,11 @@
 <?php
 
-use App\Livewire\AdminDashboard;
-use App\Livewire\UserCreate;
-use App\Livewire\UserIndex;
-use App\Livewire\UserShow;
+use App\Livewire\IdentityAuth\AdminDashboard;
+use App\Livewire\IdentityAuth\ServiceClientCreate;
+use App\Livewire\IdentityAuth\ServiceClientIndex;
+use App\Livewire\IdentityAuth\UserCreate;
+use App\Livewire\IdentityAuth\UserIndex;
+use App\Livewire\IdentityAuth\UserShow;
 use Illuminate\Support\Facades\Route;
 use Machec\Contracts\Enums\RoleName;
 use Spatie\Permission\Middleware\RoleMiddleware;
@@ -18,6 +20,9 @@ Route::middleware(['auth', 'verified', RoleMiddleware::using([RoleName::Customer
         Route::middleware(RoleMiddleware::using(RoleName::CustomerAdmin))
             ->group(function (): void {
                 Route::livewire('users/create', UserCreate::class)->name('users.create');
+
+                Route::livewire('service-clients', ServiceClientIndex::class)->name('service-clients.index');
+                Route::livewire('service-clients/create', ServiceClientCreate::class)->name('service-clients.create');
             });
 
         Route::livewire('users/{user}', UserShow::class)->name('users.show')->whereNumber('user');

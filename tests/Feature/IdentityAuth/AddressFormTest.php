@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\AddressForm;
+use App\Livewire\IdentityAuth\AddressForm;
 use App\Models\Address;
 use App\Models\AuditLog;
 use App\Models\User;

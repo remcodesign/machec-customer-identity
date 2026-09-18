@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\IdentityAuth;
 
-use App\Actions\PasswordResetRequestAction;
+use App\Actions\IdentityAuth\PasswordResetRequestAction;
 use App\Data\Requests\PasswordResetRequestData;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;

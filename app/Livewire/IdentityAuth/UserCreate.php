@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\IdentityAuth;
 
-use App\Actions\CreateUserAction;
-use App\Livewire\Forms\UserForm;
+use App\Actions\IdentityAuth\CreateUserAction;
+use App\Livewire\IdentityAuth\Forms\UserForm;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;

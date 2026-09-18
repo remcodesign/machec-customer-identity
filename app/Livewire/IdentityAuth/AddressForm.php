@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\IdentityAuth;
 
-use App\Livewire\Forms\AddressForm as AddressFormData;
+use App\Livewire\IdentityAuth\Forms\AddressForm as AddressFormData;
 use App\Models\Address;
 use App\Models\User;
 use Illuminate\Contracts\View\View;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\IdentityAuth;
 
 use App\Data\Requests\PasswordResetRequestData;
 use App\Mail\AdminPasswordResetNotificationMail;

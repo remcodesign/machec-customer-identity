@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\IdentityAuth;
 
-use App\Actions\DeleteUserAction;
+use App\Actions\IdentityAuth\DeleteUserAction;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
