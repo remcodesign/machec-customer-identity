@@ -35,7 +35,7 @@
                 </flux:sidebar.item>
 
                 <br />
-                
+
                 <x-machec::admin-nav
                     :links="[
                         ['label' => __('Commercial Core'), 'url' => rtrim(config('services.commercial_core.url'), '/').'/login'],
