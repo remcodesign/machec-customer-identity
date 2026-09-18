@@ -151,6 +151,18 @@ return [
         // customer role and writes a usr_audit_log row, D63/D79) — Fortify's
         // stock CreateNewUser action bypassed both, producing un-audited,
         // roleless "ghost" accounts.
+
+        // Features::resetPasswords() stays enabled — deliberately, and
+        // narrowly, for the admin back office only (D96). This app's
+        // Livewire login (this feature's own "Forgot your password?"
+        // link/route, session-based, `livewire.auth.{forgot-password,
+        // reset-password}` views) is a completely separate audience and
+        // code path from the customer-facing placeholder at Step 2.7
+        // (POST /api/v1/password/reset-request -> PasswordResetRequestAction,
+        // D79) — customers never render this Blade login at all; they
+        // only ever reach the app through the BFF's own API calls. The
+        // two never share a route, a controller, or a Mailable, and
+        // neither can affect the other.
         Features::resetPasswords(),
     ],
 

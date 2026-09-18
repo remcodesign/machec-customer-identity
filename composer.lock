@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "87782d68ddb7b8c55901bf9215b0bfec",
+    "content-hash": "545423e86c4ff1646be2652e5a5243d0",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2699,16 +2699,16 @@
         },
         {
             "name": "machec/contracts",
-            "version": "0.3.0",
+            "version": "0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/remcodesign/machec-contracts.git",
-                "reference": "60dabc3c367d014e76b5d5913ff97e326fa4ebb5"
+                "reference": "ae38f1fc47e55a44c7bbc5463b9ed2aa98e55b74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/remcodesign/machec-contracts/zipball/60dabc3c367d014e76b5d5913ff97e326fa4ebb5",
-                "reference": "60dabc3c367d014e76b5d5913ff97e326fa4ebb5",
+                "url": "https://api.github.com/repos/remcodesign/machec-contracts/zipball/ae38f1fc47e55a44c7bbc5463b9ed2aa98e55b74",
+                "reference": "ae38f1fc47e55a44c7bbc5463b9ed2aa98e55b74",
                 "shasum": ""
             },
             "require": {
@@ -2733,10 +2733,10 @@
             ],
             "description": "Shared Composer package for cross-app value objects, casts, and services used by the Machec Laravel Cloud apps.",
             "support": {
-                "source": "https://github.com/remcodesign/machec-contracts/tree/0.3.0",
+                "source": "https://github.com/remcodesign/machec-contracts/tree/0.4.1",
                 "issues": "https://github.com/remcodesign/machec-contracts/issues"
             },
-            "time": "2026-09-17T19:26:09+00:00"
+            "time": "2026-09-18T14:01:59+00:00"
         },
         {
             "name": "monolog/monolog",

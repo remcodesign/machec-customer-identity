@@ -56,4 +56,10 @@ return [
         'admin_password' => env('ADMIN_PASSWORD'),
     ],
 
+    // Whether a password-reset request (D79) also sends the requesting
+    // customer a plain acknowledgement email, on top of the admin
+    // notification that always goes out. No token/link, since there is no
+    // self-service reset flow yet.
+    'notify_customer_on_password_request' => env('NOTIFY_CUSTOMER_ON_PASSWORD_REQUEST', false),
+
 ];

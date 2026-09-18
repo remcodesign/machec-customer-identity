@@ -115,4 +115,17 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Password Reset Admin Address
+    |--------------------------------------------------------------------------
+    |
+    | The fixed address that always receives a password-reset notification
+    | (D79) — a config value, never a `users` lookup, since v1 has no
+    | self-service reset broker yet.
+    |
+    */
+
+    'admin_address' => env('MAIL_ADMIN_ADDRESS', 'admin@example.com'),
+
 ];
