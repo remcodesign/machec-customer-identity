@@ -4,10 +4,10 @@ use App\Models\User;
 use Machec\Contracts\Enums\RoleName;
 use Spatie\Permission\Models\Role;
 
-test('issues a stateful session cookie after valid login on the shared parent domain', function (): void {
+test('issues a stateful session cookie after valid login from the BFF origin', function (): void {
     $user = User::factory()->create(['password' => 'correct-password']);
 
-    $response = $this->withHeader('Origin', 'https://shop.machec.example')
+    $response = $this->withHeader('Origin', 'http://localhost:3000')
         ->postJson('/api/v1/auth/login', [
             'email' => $user->email,
             'password' => 'correct-password',
@@ -31,7 +31,7 @@ test('issues a stateful session cookie after valid login on the shared parent do
 test('registering creates a user with the customer role and issues a session, no separate login required', function (): void {
     Role::findOrCreate(RoleName::Customer);
 
-    $response = $this->withHeader('Origin', 'https://shop.machec.example')
+    $response = $this->withHeader('Origin', 'http://localhost:3000')
         ->postJson('/api/v1/auth/register', [
             'name' => 'New Customer',
             'email' => 'new-customer@example.com',
@@ -57,7 +57,7 @@ test('logging out invalidates the session and writes a usr_audit_log row', funct
     $user = User::factory()->create();
     $this->actingAs($user);
 
-    $response = $this->withHeader('Origin', 'https://shop.machec.example')
+    $response = $this->withHeader('Origin', 'http://localhost:3000')
         ->postJson('/api/v1/auth/logout');
 
     $response->assertNoContent();
@@ -82,7 +82,7 @@ test('rejects login from an origin outside the configured stateful domains', fun
 });
 
 test("rejects registration when password and password_confirmation don't match", function (): void {
-    $response = $this->withHeader('Origin', 'https://shop.machec.example')
+    $response = $this->withHeader('Origin', 'http://localhost:3000')
         ->postJson('/api/v1/auth/register', [
             'name' => 'New Customer',
             'email' => 'mismatched@example.com',
@@ -97,7 +97,7 @@ test("rejects registration when password and password_confirmation don't match",
 test('rejects registration with an email that already exists in users', function (): void {
     $existing = User::factory()->create();
 
-    $response = $this->withHeader('Origin', 'https://shop.machec.example')
+    $response = $this->withHeader('Origin', 'http://localhost:3000')
         ->postJson('/api/v1/auth/register', [
             'name' => 'New Customer',
             'email' => $existing->email,

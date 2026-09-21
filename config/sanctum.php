@@ -19,9 +19,18 @@ return [
     */
 
     'stateful' => explode(',', (string) env('SANCTUM_STATEFUL_DOMAINS', implode(',', array_filter([
-        // Production parent domain (D8) — covers both the BFF's and this
-        // app's own subdomains under the shared `.machec.example` domain.
-        '*.machec.example',
+        // D115 corrects D8: there is no shared parent domain — the BFF is
+        // the only party that ever presents this app's stateful-origin
+        // check (browser <-> BFF stays same-origin; the BFF relays the
+        // session cookie server-side). `localhost:3000` below covers the
+        // BFF's local `next dev` origin; the BFF's real Cloud Run host has
+        // no fixed literal (Cloud Run assigns it at deploy time unless a
+        // custom domain is mapped), so it must be set via
+        // `SANCTUM_STATEFUL_DOMAINS` as a Laravel Cloud secret in prod —
+        // never hardcoded here. Entries are bare host[:port], no scheme:
+        // Sanctum's own `EnsureFrontendRequestsAreStateful::fromFrontend()`
+        // strips the scheme off the incoming Origin/Referer before matching,
+        // so an `http://`-prefixed entry here would never match.
         'localhost',
         'localhost:3000',
         '127.0.0.1',
