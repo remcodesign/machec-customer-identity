@@ -68,6 +68,15 @@ test('logging out invalidates the session and writes a usr_audit_log row', funct
     ]);
 });
 
+test('logging out while already unauthenticated is a no-op, not a crash', function (): void {
+    $response = $this->withHeader('Origin', 'http://localhost:3000')
+        ->postJson('/api/v1/auth/logout');
+
+    $response->assertNoContent();
+    $this->assertGuest();
+    $this->assertDatabaseMissing('usr_audit_log', ['action' => 'logout']);
+});
+
 test('rejects login from an origin outside the configured stateful domains', function (): void {
     $user = User::factory()->create(['password' => 'correct-password']);
 

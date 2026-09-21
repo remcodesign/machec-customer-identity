@@ -16,7 +16,7 @@ class LogoutAction
      */
     public function handle(Request $request): void
     {
-        /** @var User $user */
+        /** @var User|null $user */
         $user = Auth::user();
 
         Auth::guard('web')->logout();
@@ -26,6 +26,11 @@ class LogoutAction
             $request->session()->regenerateToken();
         }
 
-        $this->recordAuditLog($request, $user, 'logout');
+        // A call with no authenticated user (already logged out, or a
+        // session the store never actually recognized) has no actor to
+        // attribute the log to — skip it rather than crash.
+        if ($user !== null) {
+            $this->recordAuditLog($request, $user, 'logout');
+        }
     }
 }
